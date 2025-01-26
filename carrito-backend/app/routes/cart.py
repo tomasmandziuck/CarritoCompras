@@ -1,45 +1,34 @@
+import requests
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from .. import mongo
 
 cart_bp = Blueprint("cart", __name__)
 
+
+@cart_bp.route("/shipping-options", methods=["POST"])
+def get_shipping_options():
+    
+    data = request.get_json()
+    cart_total = data.get("cart_total")
+
+    if cart_total is None:
+        return jsonify({"message": "Cart total is required"}), 400
+
+    # Call Go microservice
+    go_service_url = "http://localhost:8080/shipping-options"
+    try:
+        response = requests.post(go_service_url, json={"cart_total": cart_total})
+        response.raise_for_status()
+        shipping_options = response.json()
+    except requests.exceptions.RequestException as e:
+        return jsonify({"message": "Error fetching shipping options", "error": str(e)}), 500
+
+    return jsonify({"shipping_options": shipping_options}), 200
+
 """ @cart_bp.route("/add", methods=["POST"])
-def add_to_cart():
-    data = request.json
-    user_id = data.get("user_id")
-    product_id = data.get("product_id")
-    quantity = data.get("quantity")
-
-    cart = mongo.db.carts.find_one({"user_id": user_id})
-    if not cart:
-        mongo.db.carts.insert_one({"user_id": user_id, "items": []})
-
-    mongo.db.carts.update_one(
-        {"user_id": user_id, "items.product_id": {"$ne": product_id}},
-        {"$addToSet": {"items": {"product_id": product_id, "quantity": quantity}}},
-        upsert=True
-    )
-    return jsonify({"message": "Product added to cart"}), 200
-
-@cart_bp.route("/summary", methods=["GET"])
-def cart_summary():
-    user_id = request.args.get("user_id")
-    cart = mongo.db.carts.find_one({"user_id": user_id})
-    if not cart:
-        return jsonify({"message": "Cart is empty", "total": 0, "items": []}), 200
-
-    items = cart.get("items", [])
-    total = sum(item["quantity"] * mongo.db.productos.find_one({"_id": item["product_id"]})["price"] for item in items)
-    return jsonify({"items": items, "total": total}), 200 """
-
-
-@cart_bp.route("/add", methods=["POST"])
 @jwt_required()
 def add_to_cart():
-    """
-    Adds a product to the user's cart or updates the quantity if the product already exists.
-    """
     user_id = get_jwt_identity()
     data = request.get_json()
 
@@ -78,9 +67,6 @@ def add_to_cart():
 @cart_bp.route("/summary", methods=["GET"])
 @jwt_required()
 def get_cart_summary():
-    """
-    Returns the cart summary for the user, including total price and number of items.
-    """
     user_id = get_jwt_identity()
     cart = mongo.db.cart.find_one({"user_id": user_id})
 
@@ -90,4 +76,4 @@ def get_cart_summary():
     total_items = sum(product["quantity"] for product in cart["products"])
     total_price = sum(product["quantity"] * product["price"] for product in cart["products"])
 
-    return jsonify({"total_items": total_items, "total_price": total_price}), 200
+    return jsonify({"total_items": total_items, "total_price": total_price}), 200 """
