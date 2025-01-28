@@ -1,0 +1,39 @@
+services:
+  back:
+    image: carrito-backend:latest
+    build: 
+      context: carrito-backend/
+    container_name: carrito-backend
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    depends_on:
+      - mongo
+  front:
+    image: carrito-frontend:latest
+    build:
+      context: carrito-frontend/carrito-frontend
+    container_name: carrito-frontend
+    ports:
+      - 5173:5173
+    restart: unless-stopped
+    depends_on:
+      - back
+      - go
+  go:
+    image: carrito-shipping:latest
+    build:
+      context: carrito-shipping-service/
+    container_name: carrito-shipping
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+  mongo:
+    image: mongo:8.0.4-noble
+    container_name: carrito-db
+    ports:
+      - 27018:27017
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: test

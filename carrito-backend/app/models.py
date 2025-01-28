@@ -21,15 +21,3 @@ class Product:
             "name": product["name"],
             "price": product["price"]
         }
-
-class CartItem:
-    collection_name = "cart_items"
-
-    @staticmethod
-    def to_dict(cart_item):
-        return {
-            "_id": str(cart_item["_id"]),
-            "user_id": cart_item["user_id"],
-            "product_id": cart_item["product_id"],
-            "quantity": cart_item["quantity"]
-        }
