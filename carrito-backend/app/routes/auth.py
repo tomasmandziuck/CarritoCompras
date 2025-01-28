@@ -35,9 +35,6 @@ def login():
 
     user = mongo.db.users.find_one({"email": email})
 
-    logger.info(password)
-    logger.info(user["password"])
-    logger.info(check_password_hash(user["password"], password))
     if not user or not check_password_hash(user["password"], password):
         return jsonify({"message": "Invalid email or password"}), 401
 

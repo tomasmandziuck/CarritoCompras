@@ -46,6 +46,9 @@ export const Navbar = () => {
             <li>Iniciar Sesión</li>
           </Link>
         )}
+        <Link to="/register" style={navStyles}>
+            <li>Registrarse</li>
+          </Link>
       </ul>
     </nav>
   );
