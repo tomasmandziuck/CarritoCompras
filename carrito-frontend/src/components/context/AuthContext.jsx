@@ -1,20 +1,23 @@
 import React, { createContext, useState, useContext } from "react";
 import API from "../../api";
 
-// Crear el contexto
 const AuthContext = createContext(null);
 
-// Proveedor de autenticación
+  /**
+   * Provides authentication state and functions.
+   */
+
 export const AuthProvider = ({ children }) => {
+
   const [token, setToken] = useState(localStorage.getItem("token") || null);
 
-  // Función para iniciar sesión
+  // Login function
   const login = async (email, password) => {
     try {
       const response = await API.post("/auth/login", { email, password });
       const newToken = response.data.access_token;
 
-      // Guardar token en estado y localStorage
+      // Save token and localstorage
       setToken(newToken);
       localStorage.setItem("token", newToken);
     } catch (error) {
@@ -22,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Función para cerrar sesión
+  // Logout Function
   const logout = () => {
     setToken(null);
     localStorage.removeItem("token");
@@ -35,5 +38,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Hook personalizado para usar el contexto
+// Hook to access authentication state and functions.
 export const useAuth = () => useContext(AuthContext);

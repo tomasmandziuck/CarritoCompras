@@ -6,5 +6,3 @@ export const LogoutButton = () => {
 
   return <button onClick={logout}>Cerrar Sesión</button>;
 };
-
-export default LogoutButton;

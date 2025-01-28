@@ -1,22 +1,37 @@
 nav {
-  background-color: #000;
-  color: #fff;
+  background-color: #1a1a1a; 
+  color: #f0f0f0; 
   display: flex;
   justify-content: space-between;
-  padding: 3px;
+  align-items: center;
+  padding: 10px 20px; 
 }
 
 nav > h2 {
   position: relative;
-  left: 60;
+  left: 20px; 
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .nav-list {
   display: flex;
   justify-content: space-around;
-  width: 35%;
+  gap: 15px; 
   list-style: none;
   cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  color: #f0f0f0;
+  font-size: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-list li:hover {
+  color: #4caf50; 
 }
 
 /******** Product List ******/
@@ -25,60 +40,75 @@ nav > h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px; 
   text-align: center;
+  /*margin: 20px 0;*/
+  align-items: flex-start; 
 }
 
-/****** Product  box *********/
+/****** Product Box *********/
 .product-box {
-  background-color: #fff;
-  margin: 10px;
-  padding: 20px;
-  width: 110px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+  background-color: #fafafa; 
+  margin: 15px;
+  padding: 15px;
+  width: 140px; 
+  border-radius: 8px; 
+  border: 1px solid #ccc; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.product-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); 
 }
 
 .product-quantity {
   color: #fff;
-  background-color: #f0ad4e;
+  background-color: #d2c537; 
   display: flex;
   justify-content: center;
-  border-radius: 20px;
-  max-width: 30px;
-  position: relative;
-  left: 40px;
+  align-items: center;
+  border-radius: 8px; 
+  padding: 5px 10px; 
+  width: 20px;
+  height: 20px;
+  font-size: 0.9rem;
+  margin: 10px auto; 
 }
 
 .product-price {
-  color: gray;
+  color: #666; 
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.product-add-button,
+.product-minus-button{
+  border-radius: 5px;
+  color: #fff;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease-in-out;
+  margin: 5px 0;
 }
 
 .product-add-button {
-  background-color: #5cb85c;
-  border-radius: 5px;
-  color: #fff;
-  border: none;
-  font-size: 11px;
-  cursor: pointer;
-  height: 20px;
+  background-color: #4caf50; 
+}
+
+.product-add-button:hover {
+  background-color: #45a049; 
 }
 
 .product-minus-button {
-  background-color: #d9534f;
-  border-radius: 5px;
-  color: #fff;
-  border: none;
-  font-size: 11px;
-  cursor: pointer;
+  background-color: #e53935; 
 }
 
-.product-plus-button {
-  background-color: #337ab7;
-  border-radius: 5px;
-  color: #fff;
-  border: none;
-  font-size: 11px;
-  cursor: pointer;
+.product-minus-button:hover {
+  background-color: #d32f2f; 
 }
 
 /****** Shopping Cart ********/
@@ -86,11 +116,17 @@ nav > h2 {
 .cart-container {
   display: flex;
   justify-content: center;
-  margin: 30px;
+  margin: 40px auto;
+  width: 80%; 
 }
 
 .cart-count {
-  background-color: blue;
-  border-radius: 20px;
-  padding: 8px;
+  background-color: #1976d2; 
+  color: #fff;
+  border-radius: 8px; 
+  padding: 5px 10px; 
+  font-weight: bold;
+  text-align: center;
+  font-size: 1rem;
+  display: inline-block; 
 }

@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import API from "../api";
 import { Product } from "./Product";
 
+
+/**
+ * Displays a list of products, allowing users to add items to their cart.
+ */
+
 export const ProductList = () => {
   const [products, setProducts] = useState([]);
 

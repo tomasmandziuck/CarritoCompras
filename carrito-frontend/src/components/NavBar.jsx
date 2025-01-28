@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../components/context/CartContext";
-import { useAuth } from "../components/context/AuthContext"; // Importar el contexto de autenticación
+import { useAuth } from "../components/context/AuthContext"; 
 
+  /**
+   * Displays the navigation bar with links to the store and cart.
+   * Also shows the total number of items in the cart.
+   */
+  
 export const Navbar = () => {
-  const [cart] = useContext(CartContext); // Estado del carrito
-  const { token, logout } = useAuth();   // Estado y función del contexto de autenticación
+
+  const [cart] = useContext(CartContext); 
+  const { token, logout } = useAuth();  
 
   const quantity = cart.reduce((acc, current) => {
     return acc + current.quantity;
@@ -26,14 +32,13 @@ export const Navbar = () => {
       </Link>
 
       <ul className="nav-list">
-        {/* Link al carrito */}
         <Link to="/cart" style={navStyles}>
           <li>
             Cart items: <span className="cart-count">{quantity}</span>
           </li>
         </Link>
 
-        {/* Mostrar "Cerrar Sesión" si el usuario está autenticado */}
+        {/* Show "Cerrar Sesión" if the user is authenticated */}
         {token ? (
           <li>
             <button onClick={logout} style={{ background: "red", color: "white", border: "none", cursor: "pointer" }}>
@@ -41,7 +46,7 @@ export const Navbar = () => {
             </button>
           </li>
         ) : (
-          // Mostrar "Iniciar Sesión" si el usuario no está autenticado
+          // Show "Iniciar Sesión" if user is not authenticated
           <Link to="/login" style={navStyles}>
             <li>Iniciar Sesión</li>
           </Link>

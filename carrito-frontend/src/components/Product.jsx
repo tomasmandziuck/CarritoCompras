@@ -56,11 +56,11 @@ export const Product = ({ name, price, id, imgUrl }) => {
       <div>{name}</div>
       <img src={imgUrl} width="80" height="55" />
       <div className="product-price">${price}</div>
-      <button className="product-add-button" onClick={()=> addToCart()}>+add to cart</button>
+      <button className="product-add-button" onClick={()=> addToCart()}>+Add to cart</button>
 
       {
         itemQuantity > 0 && (
-            <button className="product-minus-button" onClick={()=> removeProduct()}>+remove item</button>
+            <button className="product-minus-button" onClick={()=> removeProduct()}>Remove item</button>
            )
       }
     </div>
