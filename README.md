@@ -1,4 +1,4 @@
-# Carrito - Aplicación de Comercio Electrónico
+# Carrito de compras - Aplicación de Comercio Electrónico
 
 Una aplicación full-stack de comercio electrónico construida con React, Flask y Go, utilizando MongoDB como base de datos. La aplicación cuenta con autenticación de usuarios, listado de productos, funcionalidad de carrito de compras y cálculos de envío.
 
@@ -55,8 +55,8 @@ Una aplicación full-stack de comercio electrónico construida con React, Flask 
 
 1. Clonar el repositorio:
 ```bash
-git clone [https://github.com/tomasmandziuck/CarritoCompras.git]
-cd [CarritoCompras]
+git clone https://github.com/tomasmandziuck/CarritoCompras.git
+cd CarritoCompras
 ```
 
 2. Construir y ejecutar los contenedores:
