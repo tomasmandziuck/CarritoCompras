@@ -6,7 +6,10 @@ cart_bp = Blueprint("cart", __name__)
 
 @cart_bp.route("/shipping-options", methods=["POST"])
 def get_shipping_options():
+    """
+    Calls GO microservice sending the cart total as a parameter
 
+    """
     data = request.get_json()
     cart_total = data.get("cart_total")
 
