@@ -9,6 +9,9 @@ services:
     restart: unless-stopped
     depends_on:
       - mongo
+    environment:
+      - MONGO_URI=mongodb://root:test@carrito-db:27017/carrito_db?authSource=admin
+      - JWT_SECRET_KEY=the_project_key
   front:
     image: carrito-frontend:latest
     build:

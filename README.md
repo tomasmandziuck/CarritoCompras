@@ -27,6 +27,14 @@ Una aplicación full-stack de comercio electrónico construida con React, Flask 
 - Cálculo dinámico de costos de envío basado en el total del carrito
 - Gestión de sesiones persistente usando JWT
 
+## Características de Seguridad
+
+- Hasheo de contraseñas usando Werkzeug
+- Autenticación basada en JWT
+- Rutas protegidas tanto en frontend como en backend
+- Configuración de CORS para peticiones seguras entre orígenes
+- Gestión de tokens de autenticación con almacenamiento local
+
 ## Endpoints de la API
 
 ### Autenticación
@@ -61,7 +69,7 @@ cd CarritoCompras
 
 2. Construir y ejecutar los contenedores:
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
 Esto iniciará todos los servicios:
@@ -100,13 +108,3 @@ La aplicación sigue una arquitectura de microservicios:
 - El frontend en React se comunica con ambos servicios a través de APIs REST
 - MongoDB almacena los datos de usuarios y productos
 - Todos los servicios están containerizados y orquestados usando Docker Compose
-
-## Características de Seguridad
-
-- Hasheo de contraseñas usando Werkzeug
-- Autenticación basada en JWT
-- Rutas protegidas tanto en frontend como en backend
-- Configuración de CORS para peticiones seguras entre orígenes
-- Gestión de tokens de autenticación con almacenamiento local
-
-

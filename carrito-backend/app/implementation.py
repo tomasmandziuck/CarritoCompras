@@ -1,11 +1,15 @@
+# Initialices mongo database with its collections
 def initialice_mongo(mongo):
-    if "productos" not in mongo.db.list_collection_names():
-            mongo.db.create_collection("productos")
+    #Check if the collections already exists
+    if "products" not in mongo.db.list_collection_names():
+            mongo.db.create_collection("products")
     if "users" not in mongo.db.list_collection_names():
-            mongo.db.create_collection("users")        
+            mongo.db.create_collection("users") 
 
-    if mongo.db.productos.count_documents({}) == 0:
-        mongo.db.productos.insert_many([{
+    #Check if the collection is empty 
+    if mongo.db.products.count_documents({}) == 0:
+        #insert the base products
+        mongo.db.products.insert_many([{
             "name": "Control",
             "price": 160,
             "imgurl": "./images/control.png"

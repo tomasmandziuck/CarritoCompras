@@ -5,7 +5,7 @@ products_bp = Blueprint("products", __name__)
 
 @products_bp.route("/", methods=["GET"])
 def get_products():
-    products = mongo.db.productos.find()
+    products = mongo.db.products.find()
     product_list = [
         {"id": str(product["_id"]), "name": product["name"], "price": product["price"], "imgUrl": product["imgurl"]}
         for product in products
